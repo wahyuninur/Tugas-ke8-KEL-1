@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MyDay — Rencana Harian</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Style.css"> 
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden="true">MD</div>
+      <div>
+        <h1>MyDay</h1>
+        <p>Mengatur hari, sedikit demi sedikit.</p>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">🌙</button>
+      <button id="open-login" class="icon-btn" aria-label="Login">🔐</button>
+    </div>
+  </header>
+
+  <main class="wrap hidden" id="main-content">
+    <section class="card" aria-labelledby="todoTitle">
+      <div class="todo-header">
+        <div>
+          <h2 id="todoTitle">Rencana Harian</h2>
+          <p class="muted">Tulis rencana kecil — selesaikan satu per satu.</p>
+        </div>
+        <div class="muted" id="task-count">0 tugas</div>
+      </div>
+
+      <form id="todo-form" class="sr-only" onsubmit="return false;" aria-label="Tambah tugas">
+        </form>
+
+      <div style="display:flex; gap:12px; align-items:center; margin-bottom:12px;">
+        <div class="input" role="group" aria-label="Tambah rencana">
+          <input id="todo-input" type="text" placeholder="Contoh: Belajar 30 menit CSS" aria-label="Masukkan rencana baru">
+        </div>
+        <button id="add-btn" class="btn-add" title="Tambah rencana">Tambah</button>
+      </div>
+
+      <ul id="todo-list" aria-live="polite" aria-label="Daftar rencana"></ul>
+
+      <div class="footer-actions">
+        <div style="display:flex; gap:8px;">
+          <button id="clear-completed" class="small-btn">Hapus Selesai</button>
+          <button id="clear-all" class="small-btn">Hapus Semua</button>
+        </div>
+
+        <div class="muted" id="last-saved">Belum ada penyimpanan</div>
+      </div>
+    </section>
+
+    <aside class="side">
+      <div class="card stat">
+        <div>
+          <div class="muted">Progress hari ini</div>
+          <strong id="completed-count">0</strong> selesai
+        </div>
+        <div style="width:45%;">
+          <div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-bottom:8px">Tip singkat</h3>
+        <p class="muted">Pecah tugas besar menjadi beberapa tugas 15–30 menit. Selesaikan satu, beri tanda centang — rasanya enak 😌</p>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-bottom:8px">Kamu belum punya tugas?</h3>
+        <div class="empty-state">
+          <p class="muted">Coba ketik tugas pertama kamu — contohnya: <em>"Baca 10 halaman"</em></p>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <div id="login-modal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="loginTitle" style="position:fixed; inset:0; display:grid; place-items:center; background:rgba(2,6,23,0.5); z-index:9999;">
+    <div style="width:320px; border-radius:14px; padding:18px; background:var(--card-bg); border:1px solid var(--glass-border); box-shadow:var(--shadow);">
+      <h3 id="loginTitle">Masuk (Demo)</h3>
+      <p class="muted" style="margin-bottom:12px">Masukkan kredensial demo untuk akses penuh.</p>
+      
+      <label class="muted" for="username-input">Nama Pengguna</label>
+      <input id="username-input" type="text" style="width:100%; padding:8px; margin:8px 0 12px; border-radius:10px; border:1px solid var(--glass-border); background:transparent">
+      
+      <label class="muted" for="password-input">Kata Sandi</label>
+      <input id="password-input" type="password" style="width:100%; padding:8px; margin:8px 0 12px; border-radius:10px; border:1px solid var(--glass-border); background:transparent">
+      
+      <div style="display:flex; gap:8px; justify-content:flex-end">
+        <button id="login-close" class="small-btn">Batal</button>
+        <button id="login-do" class="small-btn" style="background:linear-gradient(90deg,var(--accent-1),var(--accent-2)); color:var(--btn-text)">Masuk</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="JavaScript.js"></script>
+</body>
+</html>

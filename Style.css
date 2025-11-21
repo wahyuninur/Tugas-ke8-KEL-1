@@ -1,0 +1,191 @@
+/* =========================
+   VARIABEL THEME (Soft Pastel)
+   ========================= */
+:root{
+  --bg-1: #f6f8ff;          /* very light blue */
+  --bg-2: #fff6fb;          /* very light pink */
+  --card-bg: rgba(255,255,255,0.65);
+  --glass-border: rgba(255,255,255,0.6);
+  --accent-1: #ff98b6;      /* soft pink */
+  --accent-2: #88d3ff;      /* sky blue */
+  --muted: #6b6b6b;
+  --shadow: 0 10px 30px rgba(16,24,40,0.06);
+  --glass-blur: 10px;
+  --btn-text: #fff;
+  --danger: #ff6b6b;
+  --radius: 18px;
+}
+
+/* Dark mode overrides (still pastel-ish, muted) */
+body.dark-mode{
+  --bg-1: #0f1724;
+  --bg-2: #08121a;
+  --card-bg: rgba(18,24,32,0.6);
+  --glass-border: rgba(255,255,255,0.04);
+  --accent-1: #ff9db0;
+  --accent-2: #78c7ff;
+  --muted: #c7c7c7;
+  --shadow: 0 12px 30px rgba(0,0,0,0.6);
+}
+
+/* =========================
+   RESET + BASE
+   ========================= */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(135deg,var(--bg-1),var(--bg-2));
+  -webkit-font-smoothing:antialiased;
+  color:#222;
+  padding:28px;
+  transition:background 0.35s ease, color 0.35s ease;
+}
+
+/* center layout */
+.wrap{
+  max-width:920px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns: 1fr 380px;
+  gap:28px;
+  align-items:start;
+}
+
+/* responsive */
+@media (max-width:900px){
+  .wrap{grid-template-columns:1fr; padding-bottom:40px}
+}
+
+/* =========================
+   NAV
+   ========================= */
+header{
+  position:sticky; top:12px;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.brand{
+  display:flex; align-items:center; gap:12px;
+}
+.logo {
+  width:46px; height:46px; border-radius:12px;
+  background: linear-gradient(135deg,var(--accent-1),var(--accent-2));
+  display:flex; align-items:center; justify-content:center;
+  color:var(--btn-text); font-weight:700;
+  box-shadow: var(--shadow);
+  font-size:18px;
+}
+.brand h1{
+  font-size:1.05rem; letter-spacing:0.2px;
+}
+.brand p{font-size:0.85rem;color:var(--muted)}
+
+.nav-actions{display:flex; gap:8px; align-items:center}
+.icon-btn{
+  border:none; background:rgba(255,255,255,0.8); padding:10px; border-radius:12px;
+  box-shadow: var(--shadow); cursor:pointer;
+  display:inline-grid; place-items:center; width:44px; height:44px;
+  transition:transform .14s ease, background .14s ease;
+  border:1px solid var(--glass-border);
+}
+.icon-btn:active{transform:scale(.98)}
+.icon-btn[aria-pressed="true"]{outline:2px solid rgba(255,255,255,0.25)}
+
+/* =========================
+   MAIN LEFT (Todo)
+   ========================= */
+.card{
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding:20px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+.todo-header{
+  display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:14px;
+}
+.todo-header h2{font-size:1.2rem}
+.todo-header p{font-size:0.85rem; color:var(--muted)}
+
+form#todo-form{
+  display:flex; gap:12px; margin-bottom:14px; align-items:center;
+}
+.input{
+  flex:1; display:flex; gap:8px; align-items:center;
+  background:rgba(255,255,255,0.5);
+  padding:10px; border-radius:12px; border:1px solid var(--glass-border);
+}
+.input input{
+  border:0; outline:0; background:transparent; font-size:1rem; padding:6px 8px; width:100%;
+}
+.btn-add{
+  background: linear-gradient(90deg,var(--accent-1),var(--accent-2));
+  color:var(--btn-text); border:0; padding:10px 14px; border-radius:12px; cursor:pointer;
+  font-weight:600; box-shadow: 0 8px 18px rgba(136,155,255,0.12);
+  transition:transform .12s ease, opacity .12s ease;
+}
+.btn-add:active{transform:translateY(1px)}
+.btn-add:disabled{opacity:0.6; cursor:not-allowed}
+
+/* list */
+ul#todo-list{list-style:none; display:flex; flex-direction:column; gap:10px; padding:4px 2px}
+li.task{
+  display:flex; gap:12px; align-items:center; justify-content:space-between;
+  padding:12px; border-radius:12px; border:1px solid transparent;
+  transition:all .18s ease; background: rgba(255,255,255,0.35);
+}
+li.task:hover{transform:translateY(-4px); box-shadow: 0 12px 30px rgba(16,24,40,0.06)}
+.left {
+  display:flex; gap:12px; align-items:center; flex:1; min-width:0;
+}
+.number{
+  font-weight:700; color:var(--muted); width:36px; text-align:right; margin-right:6px;
+}
+.checkbox{
+  width:20px; height:20px; border-radius:6px; appearance:none; border:2px solid rgba(0,0,0,0.06);
+  display:inline-grid; place-items:center; cursor:pointer;
+}
+.checkbox:checked{background:linear-gradient(90deg,var(--accent-1),var(--accent-2)); border-color:transparent}
+.task-title{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-weight:600}
+.task-meta{font-size:0.82rem; color:var(--muted)}
+
+.controls{display:flex; gap:8px; align-items:center}
+.btn-delete{
+  border:0; background:transparent; color:var(--danger); font-weight:700; cursor:pointer; font-size:18px;
+}
+
+.footer-actions{display:flex; gap:8px; margin-top:12px; align-items:center; justify-content:space-between}
+.small-btn{
+  border:0; padding:8px 10px; border-radius:10px; cursor:pointer; font-weight:600;
+  background:rgba(255,255,255,0.55); border:1px solid var(--glass-border);
+}
+
+/* =========================
+   RIGHT SIDE (Stats / Tips)
+   ========================= */
+.side{
+  display:flex; flex-direction:column; gap:16px;
+}
+
+.progress{
+  height:12px; background:rgba(255,255,255,0.35); border-radius:999px; overflow:hidden;
+  border:1px solid var(--glass-border);
+}
+.progress > i{display:block; height:100%; width:0%; background: linear-gradient(90deg,var(--accent-1),var(--accent-2)); transition:width .45s cubic-bezier(.2,.9,.3,1)}
+.stat{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:12px; border-radius:12px; background:var(--card-bg); border:1px solid var(--glass-border);
+}
+
+.empty-state{padding:20px; text-align:center; color:var(--muted)}
+.muted{color:var(--muted); font-size:0.9rem}
+
+/* small helpers */
+.hidden{display:none !important;} /* Gunakan !important agar pasti tersembunyi */
+a.link{color:inherit; text-decoration:underline}
+.sr-only{border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}
